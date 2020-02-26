@@ -3,9 +3,9 @@ package cse360assign2;
 /**
  * @Author: Adam Miyauchi
  * @ID Class ID: 113
- * @Assignment Assignment Number 1
- * @Version 1.0
- * @Since assign1
+ * @Assignment Assignment Number 2
+ * @Version 2.0
+ * @Since cse360assign2
  * 
  * The SimpleList class implements an object to represent a list. 
  * The class supports creating a list, adding elements, removing elements,
@@ -106,6 +106,7 @@ public class SimpleList {
 				list = smallList;
 			}
 		}
+		
 	}
 	
 	
@@ -159,5 +160,47 @@ public class SimpleList {
 		
 		return -1;
 	}
+	
+	
+	/**
+	 * Append and element to the end of this list. 
+	 * <p>
+	 * Add the parameter to the end of the list. If the list is full, increase
+	 * the size of the list by 50%. Increment count. 
+	 * @param newElement
+	 */
+	public void append(int newElement) {
+		if (list.length == count) {
+			// Make a new list that is 50% larger and copy the elements into it
+			int[] bigList = new int[ (int) (list.length * 0.5 + list.length) ];
+			
+			for (int index = 0; index < count; index++) {
+				bigList[index] = list[index];
+			}
+			list = bigList;
+		}
+		
+		list[count] = newElement;
+		count++;
+	}
+	
+	
+	/**
+	 * Get the first element from this list
+	 * @return the first element
+	 */
+	public int first() {
+		return list[0];
+	}
+	
+	
+	/**
+	 * Get the total size of this list to include empty spaces
+	 * @return the size of this list
+	 */
+	public int size() {
+		return list.length;
+	}
+	
 	
 }
