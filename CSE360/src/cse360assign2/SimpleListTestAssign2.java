@@ -1,19 +1,93 @@
-
-package assign1;
+package cse360assign2;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-/**
- * @Author Adam Miyauchi
- * @ID 113
- * @Assignment 1
- * @Version 1.0
- * @Since assign1
- * 
- * The SimpleListTest class is a Junit test class to test the SimpleList class.
- */
-public class SimpleListTest {
+import cse360assign2.SimpleList;
 
+
+public class SimpleListTestAssign2 {
+	
+	/**
+	 * Test adding an integer to a partially filled array
+	 */
+	@Test
+	public void testAddPartial() {
+		SimpleList testList = new SimpleList();
+		testList.add(1);
+		testList.add(2);
+		testList.add(3);
+		testList.add(4);
+		assertEquals(1, testList.search(3));
+	}
+	
+	
+	/**
+	 * Tests adding an integer to a full list.
+	 */
+	@Test
+	public void testAddFull() {
+		SimpleList testList = new SimpleList();
+			testList.add(1);
+			testList.add(2);
+			testList.add(3);
+			testList.add(4);
+			testList.add(5);
+			testList.add(6);
+			testList.add(7);
+			testList.add(8);
+			testList.add(9);
+			testList.add(10);
+			testList.add(11);
+			testList.add(12);
+			assertEquals(11, testList.search(1));
+	}
+	
+	
+	/**
+	 * Tests removing an arbitrary integer from the list
+	 */
+	@Test
+	public void testRemove() {
+		SimpleList testList = new SimpleList();
+		testList.add(1);
+		testList.add(2);
+		testList.add(3);
+		testList.add(4);
+		testList.remove(3);
+		assertEquals(testList.search(3), -1);
+	}
+	
+	
+	/**
+	 * Tests removing an integer that appears twice in the list.
+	 * The method should only remove the first.
+	 */
+	@Test
+	public void testRemoveDuplicate() {
+		SimpleList testList = new SimpleList();
+		testList.add(1);
+		testList.add(2);
+		testList.add(3);
+		testList.add(4);
+		testList.add(3);
+		testList.remove(3);
+		assertEquals(testList.search(3), 1);
+	}
+	
+	
+	/**
+	 * Tests removing an element that does not exist in the list.
+	 */
+	@Test
+	public void testRemoveNonExistentElement() {
+		SimpleList testList = new SimpleList();
+		testList.add(1);
+		testList.add(2);
+		testList.remove(3);
+		assertEquals(testList.search(3), -1);
+	}
+	
+	
 	/** 
 	 * Tests the SimpleList constructor. Will fail if the SimpleList
 	 * object created is null.
@@ -33,67 +107,6 @@ public class SimpleListTest {
 	public void testMakeSimpleListFail() {
 		SimpleList testList = null;
 		assertNull(testList);
-	}
-	
-	
-	/**
-	 * Tests adding an integer to a partially filled SimpleList. 
-	 */
-	@Test
-	public void testAddPartial() {
-		SimpleList testList = new SimpleList();
-		testList.add(1);
-		testList.add(2);
-		
-		assertEquals(testList.search(2), 0);
-	}
-	
-	
-	/**
-	 * Tests adding an integer to a full SimpleList. 
-	 */
-	@Test
-	public void testAddFull() {
-		SimpleList testList = new SimpleList();
-		testList.add(1);
-		testList.add(2);
-		testList.add(3);
-		testList.add(4);
-		testList.add(5);
-		testList.add(6);
-		testList.add(7);
-		testList.add(8);
-		testList.add(9);
-		testList.add(10);
-		testList.add(11);
-		
-		assertEquals(testList.search(1), -1);
-	}
-	
-	
-	/**
-	 * Tests removing an integer from a SimpleList.
-	 */
-	@Test
-	public void testRemove() {
-		SimpleList testList = new SimpleList();
-		testList.add(1);
-		testList.add(2);
-		testList.remove(1);
-		
-		assertEquals(testList.search(2), 0);
-	}
-
-	
-	/**
-	 * Tests removing an integer that does not exist in the list.
-	 */
-	@Test
-	public void testRemoveFail() {
-		SimpleList testList = new SimpleList();
-		testList.add(4);
-		
-		assertEquals(testList.search(1), -1);
 	}
 	
 	
@@ -118,28 +131,6 @@ public class SimpleListTest {
 		testList.add(1);
 		
 		assertEquals(testList.count(), 2);
-	}
-	
-	
-	/*
-	 * Tests count on a full list. 
-	 */
-	@Test
-	public void testCountFull() {
-		SimpleList testList = new SimpleList();
-		testList.add(1);
-		testList.add(2);
-		testList.add(3);
-		testList.add(4);
-		testList.add(5);
-		testList.add(6);
-		testList.add(7);
-		testList.add(8);
-		testList.add(9);
-		testList.add(10);
-		testList.add(11);
-		
-		assertEquals(testList.count(), 10);
 	}
 	
 	
@@ -204,4 +195,10 @@ public class SimpleListTest {
 		
 		assertEquals(testList.search(3), -1);
 	}
+	
+	
 }
+
+
+
+

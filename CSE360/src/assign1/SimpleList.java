@@ -17,7 +17,7 @@ public class SimpleList {
 	/**
 	 * An array to represent this list that will hold the elements in the list
 	 */
-	private int[] list;
+	private int[] list; 
 	
 	/**
 	 * The number of elements in this list
@@ -34,7 +34,7 @@ public class SimpleList {
 		this.list = new int[10];
 		this.count = 0;
 	}
-	
+	 
 	
 	/**
 	 * Add an element to the list.
@@ -45,7 +45,7 @@ public class SimpleList {
 	 * @param newElement The new integer element that will be added to this list
 	 */
 	public void add(int newElement) {
-		
+		System.out.println("here");
 		for (int index = list.length - 1; index > 0; index--) {		
 			list[index] = list[index - 1];
 		}

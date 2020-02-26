@@ -3,23 +3,25 @@ package cse360assign2;
 /**
  * @Author: Adam Miyauchi
  * @ID Class ID: 113
- * @Assignment Assignment Number 1
+ * @Assignment Assignment Number 2
  * @Version 1.0
- * @Since assign1
+ * @Since assign2
  * 
  * The SimpleList class implements an object to represent a list. 
  * The class supports creating a list, adding elements, removing elements,
  * counting elements, searching for elements, and displaying elements. 
  * See method descriptions below for specific implementation details. 
  */
+
+
 public class SimpleList {
-	
+	 
 	/**
 	 * An array to represent this list that will hold the elements in the list
 	 */
 	private int[] list;
 	
-	/**
+	/** 
 	 * The number of elements in this list
 	 */
 	private int count;
@@ -39,22 +41,35 @@ public class SimpleList {
 	/**
 	 * Add an element to the list.
 	 * <p>
-	 * Shift all elements one index to the right. If this list is full,
-	 * the last element will fall off this list. Increments count. 
+	 * Add the parameter to the list at the beginning (index = 0). Moves all other integers
+	 * over so there is room. If this list is full, then increases the size by 50% so there
+	 * is room. Increments count. 
 	 * 
 	 * @param newElement The new integer element that will be added to this list
 	 */
 	public void add(int newElement) {
 		
-		for (int index = list.length - 1; index > 0; index--) {		
+		// If the list is full increase this list size by 50%
+		if (count == list.length) {
+			int[] bigList = new int[ (int) (list.length * 0.5 + list.length) ];
+			
+			for (int index = 0; index < count; index++) {
+				bigList[index] = list[index];
+			}
+			list = bigList;
+		}
+
+		// Shift elements and add the new element to the beginning
+		for (int index = count; index > 0; index--) {
 			list[index] = list[index - 1];
 		}
+		list[0] = newElement;
+		count++;
 		
-		list[0] = newElement;		
-		
-		if (count < 10) {			// Don't increment count if the list is already full
-			count++;
+		for (int i = 0; i < list.length; i++) {
+			System.out.println(list[i]);
 		}
+		System.out.println("------------");
 	}
 	
 	
@@ -63,18 +78,37 @@ public class SimpleList {
 	 * <p>
 	 * If the element is not in this list, do nothing. If the removeElement appears 
 	 * multiple times, the first entry will be removed. The elements will 
-	 * be shifted to the right by 1 index. Decrements counter.
+	 * be shifted to the right by 1 index. Decrements counter. If the list has more than
+	 * 25% empty places, list is decreased in size by 25%.
 	 * 
 	 * @param removeElement The element that will be removed from this list
 	 */
 	public void remove(int removeElement) {
 		
-		final int ELEMENT_INDEX = search(removeElement);	// The index of the removeElement
+		final int ELEMENT_INDEX = search(removeElement);	
 		
-		for (int index = ELEMENT_INDEX; index < list.length - 1; index++) {
-			list[index] = list[index + 1];
+		if (ELEMENT_INDEX == -1) {
+			return;		
 		}
-		count--;
+		else {
+			// Move elements down
+			for (int index = ELEMENT_INDEX; index < count - 1; index++) {
+				list[index] = list[index + 1];
+			}
+			count--;
+			
+			int emptySpace = list.length - count;		
+			int quarterTotalSpace = (int) (list.length * 0.25);
+			if (emptySpace > quarterTotalSpace) {			
+				int[] smallList = new int[list.length - quarterTotalSpace];
+				
+				// Move elements to the smaller list
+				for (int index = 0; index < count; index++) {
+					smallList[index] = list[index];
+				}
+				list = smallList;
+			}
+		}
 	}
 	
 	
@@ -130,3 +164,11 @@ public class SimpleList {
 	}
 	
 }
+
+
+
+
+
+
+
+
