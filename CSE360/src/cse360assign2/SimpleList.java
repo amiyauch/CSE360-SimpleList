@@ -3,9 +3,9 @@ package cse360assign2;
 /**
  * @Author: Adam Miyauchi
  * @ID Class ID: 113
- * @Assignment Assignment Number 2
+ * @Assignment Assignment Number 1
  * @Version 1.0
- * @Since assign2
+ * @Since assign1
  * 
  * The SimpleList class implements an object to represent a list. 
  * The class supports creating a list, adding elements, removing elements,
@@ -66,10 +66,6 @@ public class SimpleList {
 		list[0] = newElement;
 		count++;
 		
-		for (int i = 0; i < list.length; i++) {
-			System.out.println(list[i]);
-		}
-		System.out.println("------------");
 	}
 	
 	
@@ -97,6 +93,7 @@ public class SimpleList {
 			}
 			count--;
 			
+			// If the list has more than 25% empty space decrease the size of the list by 25%
 			int emptySpace = list.length - count;		
 			int quarterTotalSpace = (int) (list.length * 0.25);
 			if (emptySpace > quarterTotalSpace) {			
@@ -164,11 +161,3 @@ public class SimpleList {
 	}
 	
 }
-
-
-
-
-
-
-
-
