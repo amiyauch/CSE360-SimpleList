@@ -186,11 +186,34 @@ public class SimpleList {
 	
 	
 	/**
-	 * Get the first element from this list
+	 * Get the first element from this list. Return -1 if this list is empty.
 	 * @return the first element
 	 */
 	public int first() {
-		return list[0];
+		
+		if (count == 0) {
+			return -1;
+		}
+		else {
+			return list[0];
+		}
+
+	}
+	
+	
+	/**
+	 * Get the last element from this list. Return -1 if this list is empty.
+	 * @return the last element
+	 */
+	public int last() {
+		
+		if (count == 0) {
+			return -1;
+		}
+		else {
+			return list[count - 1];
+		}
+		
 	}
 	
 	
